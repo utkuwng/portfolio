@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Huynh Nhu — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Satoshi:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --cream:#faf8f4;--paper:#f4f0e8;
+  --pink:#ffd6e0;--pink2:#ffb3c6;
+  --mint:#c8f0e0;--mint2:#a8e6cf;
+  --lavender:#e8d5ff;--lav2:#d4b8ff;
+  --peach:#ffe4cc;--peach2:#ffcba4;
+  --yellow:#fff3c4;
+  --ink:#1a1714;--ink2:#4a4540;--ink3:#8a8480;
+  --border:rgba(26,23,20,0.08);
+  --shadow:0 2px 20px rgba(26,23,20,0.06);
+  --shadow-lg:0 8px 40px rgba(26,23,20,0.1);
+  --r:16px;--r-sm:10px;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--ink);font-family:'Satoshi',sans-serif;line-height:1.6;overflow-x:hidden;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 48px;
+  background:rgba(250,248,244,0.88);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-family:'Clash Display',sans-serif;font-weight:700;font-size:18px;letter-spacing:-0.5px;color:var(--ink);}
+.nav-logo em{font-style:normal;background:linear-gradient(135deg,#f093fb,#f5576c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nav-links{display:flex;gap:8px;}
+.nav-links a{color:var(--ink2);text-decoration:none;font-size:13px;padding:6px 14px;border-radius:100px;transition:all 0.2s;}
+.nav-links a:hover{background:var(--paper);color:var(--ink);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:100px 48px 80px;position:relative;overflow:hidden;}
+.blob{position:absolute;border-radius:60% 40% 70% 30%/50% 60% 40% 50%;animation:morph 8s ease-in-out infinite;pointer-events:none;}
+.blob1{width:500px;height:500px;background:var(--pink);opacity:0.5;top:-100px;right:-80px;animation-delay:0s;}
+.blob2{width:350px;height:350px;background:var(--mint);opacity:0.5;bottom:0;left:-60px;animation-delay:3s;}
+.blob3{width:250px;height:250px;background:var(--lavender);opacity:0.5;top:40%;right:15%;animation-delay:5s;}
+@keyframes morph{0%,100%{border-radius:60% 40% 70% 30%/50% 60% 40% 50%;}33%{border-radius:40% 60% 30% 70%/60% 40% 50% 50%;}66%{border-radius:70% 30% 50% 50%/30% 70% 60% 40%;}}
+.hero-inner{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;width:100%;max-width:900px;margin:0 auto;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border);border-radius:100px;padding:6px 16px 6px 10px;font-size:13px;color:var(--ink2);margin-bottom:28px;box-shadow:var(--shadow);}
+.hero-badge .dot-live{width:6px;height:6px;background:#22c55e;border-radius:50%;animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;};}
+.hero-title{font-family:'Clash Display',sans-serif;font-size:clamp(48px,6vw,80px);font-weight:700;line-height:1.0;letter-spacing:-2px;margin-bottom:24px;}
+.hero-title .name{display:block;background:linear-gradient(135deg,#667eea 0%,#f093fb 50%,#f5576c 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-title .role{display:block;color:var(--ink);font-size:0.6em;font-weight:500;margin-top:10px;letter-spacing:-0.5px;}
+.hero-desc{font-size:16px;color:var(--ink2);line-height:1.7;max-width:480px;margin-bottom:36px;}
+.hero-stats{display:flex;gap:32px;margin-top:40px;padding-top:32px;border-top:1px solid var(--border);}
+.stat-n{font-family:'Clash Display',sans-serif;font-size:32px;font-weight:700;letter-spacing:-1px;color:var(--ink);}
+.stat-l{font-size:12px;color:var(--ink3);margin-top:2px;}
+
+/* SECTIONS */
+.section{padding:80px 48px;}
+.section-inner{max-width:1200px;margin:0 auto;}
+.section-header{margin-bottom:48px;}
+.section-tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);margin-bottom:12px;}
+.section-title{font-family:'Clash Display',sans-serif;font-size:40px;font-weight:700;letter-spacing:-1px;color:var(--ink);}
+.section-title span{background:linear-gradient(135deg,#667eea,#f093fb);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+
+/* PROJECTS */
+.projects-section{background:var(--paper);}
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.proj-card{background:#fff;border-radius:var(--r);border:1px solid var(--border);padding:32px;cursor:pointer;transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.3s;position:relative;overflow:hidden;}
+.proj-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--r) var(--r) 0 0;}
+.proj-card.c-pink::before{background:linear-gradient(90deg,#f093fb,#f5576c);}
+.proj-card.c-mint::before{background:linear-gradient(90deg,#4ecdc4,#44a08d);}
+.proj-card.c-lav::before{background:linear-gradient(90deg,#667eea,#764ba2);}
+.proj-card.c-peach::before{background:linear-gradient(90deg,#f7971e,#ffd200);}
+.proj-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;}
+.proj-num{font-size:11px;color:var(--ink3);letter-spacing:1px;font-weight:500;}
+.proj-tags{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;}
+.ptag{padding:3px 10px;border-radius:100px;font-size:11px;font-weight:500;}
+.ptag.pink{background:var(--pink);color:#c2185b;}
+.ptag.mint{background:var(--mint);color:#1b5e20;}
+.ptag.lav{background:var(--lavender);color:#4527a0;}
+.ptag.peach{background:var(--peach);color:#bf360c;}
+.proj-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;}
+.proj-icon.pink{background:var(--pink);}
+.proj-icon.mint{background:var(--mint);}
+.proj-icon.lav{background:var(--lavender);}
+.proj-icon.peach{background:var(--peach);}
+.proj-title{font-family:'Clash Display',sans-serif;font-size:20px;font-weight:700;letter-spacing:-0.5px;margin-bottom:10px;}
+.proj-desc{font-size:13px;color:var(--ink2);line-height:1.6;margin-bottom:24px;}
+.proj-footer{display:flex;align-items:center;justify-content:space-between;}
+.proj-meta{font-size:12px;color:var(--ink3);}
+.proj-arrow{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--ink3);transition:all 0.3s;}
+.proj-card:hover .proj-arrow{background:var(--ink);border-color:var(--ink);color:#fff;transform:rotate(45deg);}
+
+/* SKILLS */
+.skills-section{background:#fff;}
+.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+.skill-item{margin-bottom:24px;}
+.skill-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.skill-name{font-size:14px;font-weight:500;color:var(--ink);}
+.skill-pct{font-size:13px;color:var(--ink3);font-weight:500;}
+.skill-track{height:8px;background:var(--paper);border-radius:100px;overflow:hidden;}
+.skill-fill{height:100%;border-radius:100px;width:0%;transition:width 1.4s cubic-bezier(0.25,1,0.5,1);}
+.skill-fill.pink{background:linear-gradient(90deg,#f093fb,#f5576c);}
+.skill-fill.mint{background:linear-gradient(90deg,#4ecdc4,#44a08d);}
+.skill-fill.lav{background:linear-gradient(90deg,#667eea,#764ba2);}
+.skill-fill.peach{background:linear-gradient(90deg,#f7971e,#ffd200);}
+.skill-fill.blue{background:linear-gradient(90deg,#4facfe,#00f2fe);}
+.radar-wrap{display:flex;flex-direction:column;align-items:center;gap:16px;}
+.radar-wrap h3{font-family:'Clash Display',sans-serif;font-size:20px;font-weight:700;letter-spacing:-0.5px;align-self:flex-start;}
+.radar-legend{display:flex;flex-wrap:wrap;gap:8px;align-self:flex-start;}
+.r-leg{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink2);}
+.r-dot{width:8px;height:8px;border-radius:50%;}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;background:rgba(250,248,244,0.7);backdrop-filter:blur(16px);opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal{background:#fff;border-radius:24px;border:1px solid var(--border);box-shadow:0 24px 80px rgba(26,23,20,0.12);width:90%;max-width:800px;max-height:88vh;overflow-y:auto;transform:scale(0.96) translateY(12px);transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1);scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+.modal-overlay.open .modal{transform:scale(1) translateY(0);}
+.modal-header{padding:32px 36px 24px;border-bottom:1px solid var(--border);position:relative;display:flex;align-items:flex-start;gap:20px;}
+.modal-icon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;}
+.modal-close{position:absolute;top:20px;right:20px;width:32px;height:32px;border-radius:50%;background:var(--paper);border:none;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--ink2);transition:background 0.2s;}
+.modal-close:hover{background:var(--border);}
+.modal-tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
+.modal-body{padding:28px 36px 36px;}
+.modal-section{margin-bottom:28px;}
+.modal-section-title{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.ov-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.ov-box{background:var(--cream);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px;}
+.ov-label{font-size:11px;color:var(--ink3);margin-bottom:4px;}
+.ov-val{font-size:16px;font-weight:600;font-family:'Clash Display',sans-serif;}
+.feat-list{display:flex;flex-direction:column;gap:10px;}
+.feat-item{display:flex;gap:14px;padding:14px 16px;background:var(--cream);border-radius:var(--r-sm);border:1px solid var(--border);}
+.feat-dot{width:8px;height:8px;border-radius:50%;margin-top:5px;flex-shrink:0;}
+.feat-text strong{font-size:14px;display:block;margin-bottom:3px;}
+.feat-text p{font-size:13px;color:var(--ink2);line-height:1.5;}
+.skills-pills{display:flex;flex-wrap:wrap;gap:8px;}
+.sk-pill{padding:5px 14px;border-radius:100px;font-size:12px;font-weight:500;border:1.5px solid;}
+.demo-box{background:var(--cream);border-radius:var(--r-sm);border:1px solid var(--border);padding:20px;}
+.prog-item{margin-bottom:14px;}
+.prog-label{display:flex;justify-content:space-between;font-size:12px;color:var(--ink2);margin-bottom:6px;}
+.prog-track{height:5px;background:rgba(26,23,20,0.08);border-radius:100px;overflow:hidden;}
+.prog-fill{height:100%;border-radius:100px;width:0;transition:width 1.2s cubic-bezier(0.25,1,0.5,1);}
+.kpi-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);}
+.kpi-row:last-child{border-bottom:none;}
+.kpi-label{font-size:13px;color:var(--ink2);}
+.kpi-val{font-size:13px;font-weight:600;}
+
+/* CONTACT */
+.contact-section{background:var(--ink);color:#fff;padding:80px 48px;}
+.contact-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:48px;}
+.contact-left .label{font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
+.contact-left h2{font-family:'Clash Display',sans-serif;font-size:52px;font-weight:700;letter-spacing:-2px;line-height:0.95;}
+.contact-left h2 span{background:linear-gradient(135deg,#f093fb,#f5576c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.contact-right{display:flex;flex-direction:column;gap:12px;align-items:flex-end;}
+.contact-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r);padding:16px 20px;display:flex;align-items:center;gap:12px;min-width:260px;}
+.contact-card .icon{font-size:20px;}
+.contact-card .info small{font-size:11px;color:rgba(255,255,255,0.4);display:block;}
+.contact-card .info span{font-size:14px;color:#fff;font-weight:500;}
+
+/* FOOTER */
+footer{background:var(--paper);padding:24px 48px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-l{font-size:13px;color:var(--ink3);}
+.footer-r{display:flex;gap:20px;}
+.footer-r a{font-size:13px;color:var(--ink3);text-decoration:none;transition:color 0.2s;}
+.footer-r a:hover{color:var(--ink);}
+
+@media(max-width:768px){
+  nav{padding:12px 20px;}
+  .hero{padding:90px 20px 60px;}
+  .hero-inner{grid-template-columns:1fr;}
+  .hero-right{display:none;}
+  .section{padding:60px 20px;}
+  .projects-grid{grid-template-columns:1fr;}
+  .skills-layout{grid-template-columns:1fr;}
+  .contact-inner{flex-direction:column;}
+  .contact-right{align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Le Huynh Nhu<em>.</em></div>
+  <div class="nav-links">
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <span class="dot-live"></span>
+        Open to opportunities
+      </div>
+      <h1 class="hero-title">
+        <span class="name">Le Huynh Nhu</span>
+        <span class="role">Product Strategy · UX Research · Technology Innovation</span>
+      </h1>
+      <p class="hero-desc">
+        I combine human-centered design thinking with technology strategy to build products that solve real problems — from concept validation to scalable solutions.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-n">4</div>
+          <div class="stat-l">Key Projects</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-n">3+</div>
+          <div class="stat-l">Years Learning</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section projects-section" id="projects">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Selected Work</div>
+      <h2 class="section-title">Featured <span>Projects</span></h2>
+    </div>
+    <div class="projects-grid">
+
+      <div class="proj-card c-pink" onclick="openModal('hci')">
+        <div class="proj-top">
+          <span class="proj-num">01</span>
+          <div class="proj-tags">
+            <span class="ptag pink">HCI</span>
+            <span class="ptag pink">Product Strategy</span>
+            <span class="ptag pink">UX Research</span>
+          </div>
+        </div>
+        <div class="proj-icon pink">🪑</div>
+        <div class="proj-title">ChairGo — Flexible Seating Management</div>
+        <div class="proj-desc">Smart chair borrowing system combining mobile app, QR authentication and smart lockers — turning static study spaces into adaptive learning environments.</div>
+        <div class="proj-footer">
+          <span class="proj-meta">4 months · Team of 5</span>
+          <div class="proj-arrow">↗</div>
+        </div>
+      </div>
+
+      <div class="proj-card c-mint" onclick="openModal('mobile')">
+        <div class="proj-top">
+          <span class="proj-num">02</span>
+          <div class="proj-tags">
+            <span class="ptag mint">Flutter</span>
+            <span class="ptag mint">Mobile App</span>
+            <span class="ptag mint">UX Flow</span>
+          </div>
+        </div>
+        <div class="proj-icon mint">🍜</div>
+        <div class="proj-title">BITOO — Food Delivery Mobile App</div>
+        <div class="proj-desc">A Flutter-built food delivery prototype simulating a real-world ordering experience — from browsing restaurants to cart, voucher, checkout, and live order tracking.</div>
+        <div class="proj-footer">
+          <span class="proj-meta">2 months · Team of 4</span>
+          <div class="proj-arrow">↗</div>
+        </div>
+      </div>
+
+      <div class="proj-card c-lav" onclick="openModal('mgmt')">
+        <div class="proj-top">
+          <span class="proj-num">03</span>
+          <div class="proj-tags">
+            <span class="ptag lav">R&amp;D / Product Dev</span>
+            <span class="ptag lav">AI Product</span>
+            <span class="ptag lav">ADAS</span>
+          </div>
+        </div>
+        <div class="proj-icon lav">🚗</div>
+        <div class="proj-title">DAS — Driver Awareness System</div>
+        <div class="proj-desc">Acting as R&D/Product Development team for Magna International — researched, developed, and proposed an AI-powered driver safety solution aligned with Magna's ADAS strategy.</div>
+        <div class="proj-footer">
+          <span class="proj-meta">2 months · Team of 6</span>
+          <div class="proj-arrow">↗</div>
+        </div>
+      </div>
+
+      <div class="proj-card c-peach" onclick="openModal('innov')">
+        <div class="proj-top">
+          <span class="proj-num">04</span>
+          <div class="proj-tags">
+            <span class="ptag peach">VR / Simulation</span>
+            <span class="ptag peach">AI Feedback</span>
+            <span class="ptag peach">EdTech</span>
+          </div>
+        </div>
+        <div class="proj-icon peach">🥽</div>
+        <div class="proj-title">ImmersiCar VR — Driving Simulator</div>
+        <div class="proj-desc">VR-based dangerous situation driving simulator designed to replace memorization-based tests with real reflex training — improving driver reaction skills through immersive AI-assisted scenarios.</div>
+        <div class="proj-footer">
+          <span class="proj-meta">3 months · Team of 5</span>
+          <div class="proj-arrow">↗</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section skills-section" id="skills">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Competencies</div>
+      <h2 class="section-title">Skills & <span>Confidence</span></h2>
+    </div>
+    <div class="skills-layout">
+      <div class="skill-bars" id="skillBars">
+        <div style="font-family:'Clash Display',sans-serif;font-size:20px;font-weight:700;margin-bottom:24px;letter-spacing:-0.5px;">Confidence Level</div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">UX Research & Design</span><span class="skill-pct">88%</span></div>
+          <div class="skill-track"><div class="skill-fill pink" data-target="88"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Product Strategy</span><span class="skill-pct">85%</span></div>
+          <div class="skill-track"><div class="skill-fill lav" data-target="85"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Human-Computer Interaction</span><span class="skill-pct">83%</span></div>
+          <div class="skill-track"><div class="skill-fill blue" data-target="83"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Technology Strategy & Management</span><span class="skill-pct">80%</span></div>
+          <div class="skill-track"><div class="skill-fill peach" data-target="80"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Design Thinking</span><span class="skill-pct">90%</span></div>
+          <div class="skill-track"><div class="skill-fill mint" data-target="90"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Business Analysis & Go-to-Market</span><span class="skill-pct">78%</span></div>
+          <div class="skill-track"><div class="skill-fill pink" data-target="78"></div></div>
+        </div>
+      </div>
+      <div class="radar-wrap">
+        <h3>Radar Profile</h3>
+        <svg id="radarSvg" viewBox="0 0 300 300" width="300" height="300" style="overflow:visible"></svg>
+        <div class="radar-legend" id="radarLegend"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <div class="label">Get in touch</div>
+      <h2>Let's create<br><span>together.</span></h2>
+    </div>
+    <div class="contact-right">
+      <div class="contact-card">
+        <div class="icon">📧</div>
+        <div class="info">
+          <small>Email</small>
+          <span>lehuynhnhu0208@gmail.com</span>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="icon">📍</div>
+        <div class="info">
+          <small>Location</small>
+          <span>Ho Chi Minh City, Vietnam</span>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="icon">💼</div>
+        <div class="info">
+          <small>LinkedIn</small>
+          <span>linkedin.com/in/huỳnh-như-lê</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-l">lehuynhnhu0208@gmail.com</div>
+  <div class="footer-r">
+    <a href="https://linkedin.com/in/huỳnh-như-lê" target="_blank">LinkedIn</a>
+    <a href="mailto:lehuynhnhu0208@gmail.com">Email</a>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modalBox">
+    <div class="modal-header" id="mHeader"></div>
+    <div class="modal-body" id="mBody"></div>
+  </div>
+</div>
+
+<script>
+/* SKILL BARS */
+const skillObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      document.querySelectorAll('.skill-fill').forEach(el=>{el.style.width=el.dataset.target+'%';});
+      drawRadar();
+      skillObserver.disconnect();
+    }
+  });
+},{threshold:0.3});
+skillObserver.observe(document.getElementById('skillBars'));
+
+/* RADAR */
+const radarData=[
+  {label:'UX Research',val:88,color:'#f093fb'},
+  {label:'Product Strategy',val:85,color:'#667eea'},
+  {label:'HCI',val:83,color:'#4facfe'},
+  {label:'Tech Strategy',val:80,color:'#f7971e'},
+  {label:'Design Thinking',val:90,color:'#4ecdc4'},
+  {label:'Business Analysis',val:78,color:'#f5576c'},
+];
+function drawRadar(){
+  const svg=document.getElementById('radarSvg');
+  const cx=150,cy=150,r=100,n=radarData.length;
+  let html='';
+  for(let g=1;g<=4;g++){
+    const gr=r*g/4;
+    const pts=Array.from({length:n},(_,i)=>{const a=(Math.PI*2*i/n)-Math.PI/2;return `${cx+gr*Math.cos(a)},${cy+gr*Math.sin(a)}`;}).join(' ');
+    html+=`<polygon points="${pts}" fill="none" stroke="rgba(26,23,20,0.07)" stroke-width="1"/>`;
+  }
+  for(let i=0;i<n;i++){const a=(Math.PI*2*i/n)-Math.PI/2;html+=`<line x1="${cx}" y1="${cy}" x2="${cx+r*Math.cos(a)}" y2="${cy+r*Math.sin(a)}" stroke="rgba(26,23,20,0.08)" stroke-width="1"/>`;}
+  for(let i=0;i<n;i++){
+    const a=(Math.PI*2*i/n)-Math.PI/2;
+    const lx=cx+(r+24)*Math.cos(a);const ly=cy+(r+24)*Math.sin(a);
+    const anchor=lx<cx-10?'end':lx>cx+10?'start':'middle';
+    html+=`<text x="${lx}" y="${ly+4}" font-size="10" fill="#8a8480" text-anchor="${anchor}" font-family="Satoshi,sans-serif" font-weight="500">${radarData[i].label}</text>`;
+  }
+  const pts=radarData.map((d,i)=>{const a=(Math.PI*2*i/n)-Math.PI/2;const rv=r*(d.val/100);return `${cx+rv*Math.cos(a)},${cy+rv*Math.sin(a)}`;}).join(' ');
+  html+=`<polygon points="${pts}" fill="rgba(102,126,234,0.12)" stroke="url(#rg)" stroke-width="2"/>`;
+  radarData.forEach((d,i)=>{const a=(Math.PI*2*i/n)-Math.PI/2;const rv=r*(d.val/100);html+=`<circle cx="${cx+rv*Math.cos(a)}" cy="${cy+rv*Math.sin(a)}" r="4" fill="${d.color}" stroke="#fff" stroke-width="2"/>`;});
+  html=`<defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#667eea"/><stop offset="100%" stop-color="#f093fb"/></linearGradient></defs>`+html;
+  svg.innerHTML=html;
+  document.getElementById('radarLegend').innerHTML=radarData.map(d=>`<div class="r-leg"><div class="r-dot" style="background:${d.color}"></div>${d.label} ${d.val}%</div>`).join('');
+}
+drawRadar();
+
+/* MODAL DATA */
+const modalData={
+  hci:{
+    icon:'🪑',iconBg:'var(--pink)',
+    title:'ChairGo — Flexible Seating Management System',
+    tags:[{text:'HCI',bg:'var(--pink)',color:'#c2185b'},{text:'Product Strategy',bg:'var(--pink)',color:'#c2185b'},{text:'UX Research',bg:'var(--lavender)',color:'#4527a0'}],
+    subtitle:'AI-powered seating management system combining mobile app, QR authentication and smart lockers — transforming static study spaces into adaptive learning environments.',
+    ov:[{l:'Timeline',v:'4 months'},{l:'Team',v:'5 members'},{l:'Role',v:'Product Manager'}],
+    feats:[
+      {color:'#f093fb',t:'Product Strategy & Alternative Analysis',d:'Evaluated 2 competing solutions (Real-Time Seat Tracking & Digital Queue System), demonstrating ChairGo as the optimal approach by addressing both digital and physical friction simultaneously.'},
+      {color:'#667eea',t:'Hybrid Physical-Digital Service Design',d:'Designed the end-to-end product flow integrating Smart Locker + QR Authentication + Mobile App — enabling students to dynamically create group study spaces on demand.'},
+      {color:'#f5576c',t:'Usability Evaluation',d:'Conducted multi-participant usability testing. Achieved Satisfaction Score 9.47/10 and Practicality Score 9.175/10. Identified onboarding friction points as priority for next iteration.'},
+      {color:'#44a08d',t:'Risk Management & Policy Design',d:'Designed Chair Identity System (unique ID + QR + BLE beacon), 3 borrows/day limit, and automatic lost-chair traceability — elevating the prototype into a scalable service concept.'},
+    ],
+    skills:[{t:'Product Strategy',bg:'var(--pink)',color:'#c2185b',border:'var(--pink2)'},{t:'UX Research',bg:'var(--lavender)',color:'#4527a0',border:'var(--lav2)'},{t:'Usability Testing',bg:'var(--mint)',color:'#1b5e20',border:'var(--mint2)'},{t:'Service Design',bg:'var(--peach)',color:'#bf360c',border:'var(--peach2)'},{t:'System Planning',bg:'var(--yellow)',color:'#795548',border:'#ffe082'},{t:'Product Flow Design',bg:'var(--pink)',color:'#c2185b',border:'var(--pink2)'}],
+    demo:'hci',
+    problem:'During peak hours at the English Zone study space, students waited 10+ minutes to find seats, walked around searching, or left entirely. Fixed chairs prevented flexible group seating. The core insight: the problem was not seat availability — it was the lack of flexibility within the learning environment.',
+    roadmap:[
+      {icon:'🔐',t:'Seamless Authentication',d:'SSO + OTP quick verification + persistent login sessions to reduce borrowing friction.'},
+      {icon:'🎓',t:'Better First-Time Experience',d:'Interactive onboarding, short tutorial videos, and animated step-by-step guidance.'},
+      {icon:'🪑',t:'Physical Improvements',d:'Weight-limit labels, more durable chair designs, and foldable mini-desk chair variants.'},
+    ],
+    evidence:{
+      label:'📄 Final Project Report — Introduction to HCI',
+      sub:'UEH University · Institute of Innovation · June 2025',
+      detail:'6-member team project submitted for the course Introduction to Human–Computer Interaction, instructed by PhD. Lê Khánh Duy. Includes Lo-Fi & Hi-Fi prototypes, usability evaluation with 5 participants, quantitative scoring (Likert scale 0–10), and qualitative findings.',
+      actionLink: 'https://drive.google.com/file/d/1k1RahHj_UKNYxEuFNiMSAfi8JVxKKxxz/view?usp=sharing',
+      actionLabel: 'View Final Report (PDF)'
+    },
+  },
+  mobile:{
+    icon:'🍜',iconBg:'var(--mint)',
+    title:'BITOO — Food Delivery Mobile App',
+    tags:[{text:'Flutter',bg:'var(--mint)',color:'#1b5e20'},{text:'Mobile App',bg:'var(--mint)',color:'#1b5e20'},{text:'UX Flow Design',bg:'var(--lavender)',color:'#4527a0'}],
+    subtitle:'A mobile food delivery application prototype developed to simulate a real-world online ordering experience — focusing on intuitive ordering flow, core delivery functionalities, and smooth end-to-end interaction using Flutter.',
+    ov:[{l:'Timeline',v:'2 months'},{l:'Team',v:'4 members'},{l:'Role',v:'UI Dev + UX Flow'}],
+    feats:[
+      {color:'#4ecdc4',t:'User Flow & Interaction Design',d:'Designed the complete ordering flow and interaction logic — from restaurant browsing through to order tracking — ensuring a clear, intuitive navigation structure throughout.'},
+      {color:'#44a08d',t:'Frontend Development with Flutter',d:'Developed UI screens and core frontend features including restaurant browsing, search & filtering, cart management, voucher application, and delivery status simulation.'},
+      {color:'#00f2fe',t:'Backend Integration',d:'Collaborated with backend teammates to connect the frontend with the database, ensuring data consistency across the ordering and account management flows.'},
+      {color:'#667eea',t:'Product Thinking — End-to-End Journey',d:'Rather than focusing only on UI visuals, the team recreated the full ordering journey: Browse → Add to Cart → Apply Voucher → Checkout → Track Order — validating how structured flows reduce user friction.'},
+    ],
+    skills:[{t:'Flutter',bg:'var(--mint)',color:'#1b5e20',border:'var(--mint2)'},{t:'Dart',bg:'var(--mint)',color:'#1b5e20',border:'var(--mint2)'},{t:'Firebase',bg:'var(--peach)',color:'#bf360c',border:'var(--peach2)'},{t:'UX Flow Design',bg:'var(--lavender)',color:'#4527a0',border:'var(--lav2)'},{t:'Mobile App Development',bg:'var(--pink)',color:'#c2185b',border:'var(--pink2)'},{t:'UI/UX',bg:'var(--yellow)',color:'#795548',border:'#ffe082'}],
+    demo:'mobile',
+    links:[
+      {label:'🌐 Live Demo',url:'https://utkuwng.github.io/mobile-app-food/'},
+      {label:'💻 GitHub Repository',url:'https://github.com/utkuwng/mobile-app-food'},
+    ],
+  },
+  mgmt:{
+    icon:'🚗',iconBg:'var(--lavender)',
+    title:'DAS — Driver Awareness System',
+    tags:[{text:'R&D / Product Dev',bg:'var(--lavender)',color:'#4527a0'},{text:'AI Product',bg:'var(--lavender)',color:'#4527a0'},{text:'ADAS',bg:'var(--mint)',color:'#1b5e20'}],
+    subtitle:'Acted as the R&D/Product Development team of Magna International to research, develop, and propose a new AI-powered driver safety solution aligned with Magna\'s mobility and ADAS strategy.',
+    ov:[{l:'Timeline',v:'2 months'},{l:'Team',v:'6 members'},{l:'Role',v:'Product Strategy'}],
+    feats:[
+      {color:'#764ba2',t:'Market & User Research',d:'Conducted in-depth research on Driver Monitoring Systems (DMS), identified market gaps, customer pain points, and evaluated competitive landscape within Magna\'s strategic direction.'},
+      {color:'#667eea',t:'Concept Generation & Validation',d:'Generated and evaluated multiple product concepts, validated through user testing to ensure the solution addressed real driver safety needs effectively.'},
+      {color:'#f093fb',t:'AI-Based Solution Design',d:'Proposed a real-time Driver Awareness System using RGB-IR cameras and Edge AI — featuring drowsiness detection, low-latency alerts, CAN Bus integration, and multi-modal warning system.'},
+      {color:'#4ecdc4',t:'Business & PM Thinking',d:'Built TAM/SAM/SOM analysis, developed pricing & GTM strategy, evaluated feasibility and scalability, and aligned product direction with Magna\'s ADAS and smart mobility roadmap.'},
+    ],
+    skills:[{t:'Product Strategy',bg:'var(--lavender)',color:'#4527a0',border:'var(--lav2)'},{t:'User Research',bg:'var(--mint)',color:'#1b5e20',border:'var(--mint2)'},{t:'Product Validation',bg:'var(--peach)',color:'#bf360c',border:'var(--peach2)'},{t:'AI Product Thinking',bg:'var(--pink)',color:'#c2185b',border:'var(--pink2)'},{t:'Business Analysis',bg:'var(--yellow)',color:'#795548',border:'#ffe082'},{t:'Go-to-Market Planning',bg:'var(--lavender)',color:'#4527a0',border:'var(--lav2)'},{t:'Cross-functional Collaboration',bg:'var(--mint)',color:'#1b5e20',border:'var(--mint2)'}],
+    demo:'mgmt',
+    dasContext:'The team was embedded as Magna International\'s R&D/Product Development unit — responsible for full-cycle product thinking: from identifying driver fatigue as a critical unmet need, to proposing a scalable AI solution that fits Magna\'s ADAS portfolio and go-to-market strategy.',
+    dasFlow:['Market Research','Pain Point Identification','Concept Generation','User Testing & Validation','AI Solution Design','Business Case & GTM'],
+    evidence:{
+      label:'📄 Final Report — Technology Management',
+      sub:'UEH University · Institute of Innovation · December 2025',
+      detail:'6-member team project submitted for the course Technology Management, instructed by PhD. Nguyễn Bá Sơn. Comprehensive 4-chapter report covering: Company overview & Business Model Canvas, Function-Means Tree & QFD, Product Specifications & Prototyping, TAM/SAM/SOM analysis, Risk Assessment (FMEA), IP Strategy, Go-to-Market & Launch Plan.',
+      actionLink: 'https://drive.google.com/file/d/1_98NdVfCytfiEJvdvSe21QocE13uwC9K/view?usp=sharing',
+      actionLabel: 'View Business Report (PDF)'
+    },
+  },
+  innov:{
+    icon:'🥽',iconBg:'var(--peach)',
+    title:'ImmersiCar VR — Dangerous Situation Driving Simulator',
+    tags:[{text:'VR / Simulation',bg:'var(--peach)',color:'#bf360c'},{text:'AI Feedback',bg:'var(--peach)',color:'#bf360c'},{text:'EdTech',bg:'var(--lavender)',color:'#4527a0'}],
+    subtitle:'A VR-based driving simulation system designed to improve drivers\' real-life reaction skills in dangerous traffic situations — replacing memorization-based tests with genuine reflex and situational awareness training.',
+    ov:[{l:'Timeline',v:'3 months'},{l:'Team',v:'5 members'},{l:'Focus',v:'Innovation / EdTech'}],
+    feats:[
+      {color:'#f7971e',t:'Problem Framing & Solution Ideation',d:'Identified that current driving simulation tests encourage key memorization rather than real situational awareness — reframing the challenge into "learning through realistic reaction-based simulation."'},
+      {color:'#ffd200',t:'UX & Interaction Flow Design',d:'Contributed to the user experience design and interaction flow, structuring dynamic hazard scenarios that simulate real dangerous traffic situations with physical steering and braking behaviors.'},
+      {color:'#f5576c',t:'Scenario Logic & Training Flow',d:'Helped structure the scenario-based learning framework covering collision detection, real-time feedback, visual error analysis, progress tracking, and performance history.'},
+      {color:'#4ecdc4',t:'AI-Supported Behavioral Analysis',d:'Contributed to the concept of AI-assisted feedback that analyzes driver behavior patterns and provides personalized suggestions to improve reflex and decision-making under pressure.'},
+    ],
+    skills:[{t:'VR Interaction Design',bg:'var(--peach)',color:'#bf360c',border:'var(--peach2)'},{t:'Unity Simulation',bg:'var(--mint)',color:'#1b5e20',border:'var(--mint2)'},{t:'Human-Centered Design',bg:'var(--lavender)',color:'#4527a0',border:'var(--lav2)'},{t:'Behavioral Analysis',bg:'var(--pink)',color:'#c2185b',border:'var(--pink2)'},{t:'AI-Assisted Feedback',bg:'var(--yellow)',color:'#795548',border:'#ffe082'},{t:'Scenario-Based Learning',bg:'var(--peach)',color:'#bf360c',border:'var(--peach2)'}],
+    demo:'innov',
+    innovProblem:'Current driving simulation tests often encourage memorization of key sequences rather than building real situational awareness. Many learners pass by remembering when to press a key — not by developing actual driving reflexes. This means test results do not accurately reflect real driving ability.',
+    innovUsers:['Beginner drivers','Learners preparing for driving tests','Drivers lacking confidence in dangerous situations'],
+  },
+};
+
+/* BUILD DEMO */
+function buildDemo(key){
+  const demos={
+    hci:`<div>
+      <div class="demo-box" style="margin-bottom:12px">
+        <div style="font-size:11px;color:var(--ink3);margin-bottom:14px;font-weight:600;text-transform:uppercase;letter-spacing:1px">📊 Usability Evaluation Results</div>
+        ${[['Satisfaction Score','94.7','linear-gradient(90deg,#f093fb,#f5576c)','9.47 / 10'],['Practicality Score','91.8','linear-gradient(90deg,#667eea,#764ba2)','9.175 / 10'],['Learnability Score','83','linear-gradient(90deg,#4ecdc4,#44a08d)','8.3 / 10']].map(([l,v,g,label])=>`
+          <div class="prog-item">
+            <div class="prog-label"><span>${l}</span><span style="font-weight:700;color:var(--ink)">${label}</span></div>
+            <div class="prog-track"><div class="prog-fill" data-w="${v}" style="background:${g}"></div></div>
+          </div>`).join('')}
+      </div>
+      <div class="demo-box" style="margin-bottom:12px">
+        <div style="font-size:11px;color:var(--ink3);margin-bottom:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px">⚡ Interaction Benchmarks</div>
+        ${[['Borrow/Return Flow (avg)','133.4 sec','#f093fb'],['In-App Navigation (avg)','4.2 sec','#44a08d'],['Team Size','5 members','#667eea'],['Project Duration','4 months','#f7971e']].map(([l,v,c])=>`
+          <div class="kpi-row"><span class="kpi-label">${l}</span><span class="kpi-val" style="color:${c}">${v}</span></div>`).join('')}
+      </div>
+      <div class="demo-box">
+        <div style="font-size:11px;color:var(--ink3);margin-bottom:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px">🔄 Core User Flow</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          ${['🔍 Scan QR','📱 Register Borrow','🪑 Use Chair','↩️ Return Chair','✅ Done'].map((s,i,arr)=>`
+            <div style="display:flex;align-items:center;gap:6px">
+              <div style="background:var(--pink);border-radius:8px;padding:6px 12px;font-size:12px;font-weight:500">${s}</div>
+              ${i<arr.length-1?'<span style="color:var(--ink3);font-size:12px">→</span>':''}
+            </div>`).join('')}
+        </div>
+      </div>
+    </div>`,
+    mobile:`<div>
+      <div class="demo-box" style="margin-bottom:12px">
+        <div style="font-size:11px;color:var(--ink3);margin-bottom:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px">📱 Key Features</div>
+        ${[['Restaurant & Food Browsing','✓','#4ecdc4'],['Search & Filtering System','✓','#44a08d'],['Cart Management','✓','#4facfe'],['Voucher & Promotion Application','✓','#a29bfe'],['Order Placement & Payment Flow','✓','#4ecdc4'],['Delivery Status Simulation','✓','#44a08d'],['Account Management','✓','#4facfe']].map(([l,v,c])=>`
+          <div class="kpi-row"><span class="kpi-label">${l}</span><span class="kpi-val" style="color:${c}">${v}</span></div>`).join('')}
+      </div>
+      <div class="demo-box" style="margin-bottom:12px">
+        <div style="font-size:11px;color:var(--ink3);margin-bottom:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px">🔄 Ordering Journey</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          ${['🔍 Browse','🛒 Add to Cart','🎟️ Voucher','💳 Checkout','📍 Track Order'].map((s,i,arr)=>`
+            <div style="display:flex;align-items:center;gap:6px">
+              <div style="background:var(--mint);border-radius:8px;padding:6px 12px;font-size:12px;font-weight:500">${s}</div>
+              ${i<arr.length-1?'<span style="color:var(--ink3);font-size:12px">→</span>':''}
+            </div>`).join('')}
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a href="https://utkuwng.github.io/mobile-app-food/" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;padding:10px 20px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:opacity 0.2s" onmouseover="this.style.opacity=0.8" onmouseout="this.style.opacity=1">🌐 Live Demo ↗</a>
+        <a href="https://github.com/utkuwng/mobile-app-food" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--ink);padding:10px 20px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;border:1.5px solid var(--border);transition:opacity 0.2s" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">💻 GitHub Repository ↗</a>
+      </div>
+    </div>`,
+    mgmt:`<div>
+      <div class="demo-box" style="margin-bottom:12px">
+        <div style="font-size:11px;color:var(--ink3);margin-bottom:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px">🚗 Final Solution Highlights</div>
+        ${[['Detection Technology','RGB-IR Cameras + Edge AI','#764ba2'],['Core Feature','Real-time Drowsiness Detection','#667eea'],['Alert System','Multi-modal Warning','#f093fb'],['Integration','CAN Bus','#4ecdc4']].map(([l,v,c])=>`
+          <div class="kpi-row"><span class="kpi-label">${l}</span><span class="kpi-val" style="color:${c}">${v}</span></div>`).join('')}
+      </div>
+      <div class="demo-box">
+        <div style="font-size:11px;color:var(--ink3);margin-bottom:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px">📈 Business Analysis</div>
+        ${[['Market Analysis','TAM / SAM / SOM','#764ba2'],['Pricing Strategy','Developed','#667eea'],['GTM Strategy','Defined','#4ecdc4'],['Risk & Feasibility','Evaluated','#f7971e']].map(([l,v,c])=>`
+          <div class="kpi-row"><span class="kpi-label">${l}</span><span class="kpi-val" style="color:${c}">${v}</span></div>`).join('')}
+      </div>
+    </div>`,
+    innov:`<div>
+      <div class="demo-box" style="margin-bottom:12px">
+        <div style="font-size:11px;color:var(--ink3);margin-bottom:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px">🥽 Core System Features</div>
+        ${[['Dynamic Hazard Scenarios','✓','#f7971e'],['Collision Detection & Auto-Stop','✓','#ffd200'],['Real-Time Feedback System','✓','#f5576c'],['Visual Error Analysis','✓','#f7971e'],['Progress Tracking & History','✓','#4ecdc4'],['AI-Supported Behavioral Analysis','✓','#a29bfe']].map(([l,v,c])=>`
+          <div class="kpi-row"><span class="kpi-label">${l}</span><span class="kpi-val" style="color:${c}">${v}</span></div>`).join('')}
+      </div>
+      <div class="demo-box">
+        <div style="font-size:11px;color:var(--ink3);margin-bottom:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px">🎯 Technology Stack</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          ${[['🥽','VR Interaction','Immersive simulation','var(--peach)'],['⚙️','Unity Engine','Scenario logic','var(--mint)'],['🤖','AI Feedback','Behavioral analysis','var(--lavender)'],['🧠','HCD','User-centered design','var(--pink)']].map(([i,n,d,bg])=>`
+            <div style="background:${bg};border-radius:10px;padding:12px">
+              <div style="font-size:20px;margin-bottom:6px">${i}</div>
+              <div style="font-size:13px;font-weight:600">${n}</div>
+              <div style="font-size:12px;opacity:0.7;margin-top:2px">${d}</div>
+            </div>`).join('')}
+        </div>
+      </div>
+    </div>`,
+  };
+  return demos[key]||'';
+}
+
+/* OPEN MODAL */
+function openModal(key){
+  const d=modalData[key];
+  const tags=d.tags.map(t=>`<span class="ptag" style="background:${t.bg};color:${t.color}">${t.text}</span>`).join('');
+  const ov=d.ov.map(o=>`<div class="ov-box"><div class="ov-label">${o.l}</div><div class="ov-val">${o.v}</div></div>`).join('');
+  const feats=d.feats.map(f=>`<div class="feat-item"><div class="feat-dot" style="background:${f.color}"></div><div class="feat-text"><strong>${f.t}</strong><p>${f.d}</p></div></div>`).join('');
+  const skills=d.skills.map(s=>`<span class="sk-pill" style="background:${s.bg};color:${s.color};border-color:${s.border}">${s.t}</span>`).join('');
+
+  let extraTop='', extraBottom='';
+
+  // ChairGo extra sections
+  if(key==='hci'&&d.problem){
+    extraTop=`<div class="modal-section">
+      <div class="modal-section-title">🔍 The Problem</div>
+      <div style="background:var(--cream);border-radius:var(--r-sm);border:1px solid var(--border);padding:16px 20px;font-size:14px;color:var(--ink2);line-height:1.7">${d.problem}</div>
+    </div>`;
+  }
+  if(key==='hci'&&d.roadmap){
+    extraBottom=`<div class="modal-section">
+      <div class="modal-section-title">🚀 Future Roadmap</div>
+      ${d.roadmap.map(r=>`<div style="display:flex;gap:14px;padding:14px 16px;background:var(--cream);border-radius:var(--r-sm);border:1px solid var(--border);margin-bottom:10px"><div style="font-size:22px;flex-shrink:0">${r.icon}</div><div><strong style="font-size:14px;display:block;margin-bottom:3px">${r.t}</strong><p style="font-size:13px;color:var(--ink2);line-height:1.5">${r.d}</p></div></div>`).join('')}
+    </div>`;
+  }
+
+  // DAS extra sections
+  if(key==='mgmt'&&d.dasContext){
+    extraTop=`<div class="modal-section">
+      <div class="modal-section-title">🏢 Project Context</div>
+      <div style="background:var(--cream);border-radius:var(--r-sm);border:1px solid var(--border);padding:16px 20px;font-size:14px;color:var(--ink2);line-height:1.7">${d.dasContext}</div>
+    </div>`;
+  }
+  if(key==='mgmt'&&d.dasFlow){
+    extraBottom=`<div class="modal-section">
+      <div class="modal-section-title">🔄 Product Development Flow</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;padding:16px;background:var(--cream);border-radius:var(--r-sm);border:1px solid var(--border)">
+        ${d.dasFlow.map((s,i,arr)=>`<div style="display:flex;align-items:center;gap:8px"><div style="background:var(--lavender);color:#4527a0;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:600">${s}</div>${i<arr.length-1?'<span style="color:var(--ink3)">→</span>':''}</div>`).join('')}
+      </div>
+    </div>`;
+  }
+
+  // ImmersiCar VR extra sections
+  if(key==='innov'&&d.innovProblem){
+    extraTop=`<div class="modal-section">
+      <div class="modal-section-title">🔍 The Problem</div>
+      <div style="background:var(--cream);border-radius:var(--r-sm);border:1px solid var(--border);padding:16px 20px;font-size:14px;color:var(--ink2);line-height:1.7">${d.innovProblem}</div>
+    </div>`;
+  }
+  if(key==='innov'&&d.innovUsers){
+    extraBottom=`<div class="modal-section">
+      <div class="modal-section-title">🎯 Target Users</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        ${d.innovUsers.map(u=>`<span style="background:var(--peach);color:#bf360c;border:1.5px solid var(--peach2);padding:6px 14px;border-radius:100px;font-size:13px;font-weight:500">${u}</span>`).join('')}
+      </div>
+    </div>`;
+  }
+
+  // Hàm hiển thị khu vực Evidence với link Google Drive
+  function evidenceBlock(ev){
+    return `<div class="modal-section">
+      <div class="modal-section-title">📋 Supporting Documentation</div>
+      <div style="background:var(--cream);border-radius:var(--r-sm);border:1px solid var(--border);padding:18px 20px;display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;gap:16px;align-items:flex-start">
+          <div style="font-size:28px;flex-shrink:0">📄</div>
+          <div>
+            <div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px">${ev.label}</div>
+            <div style="font-size:12px;color:var(--ink3);margin-bottom:8px">${ev.sub}</div>
+            <div style="font-size:13px;color:var(--ink2);line-height:1.6">${ev.detail}</div>
+          </div>
+        </div>
+        ${ev.actionLink ? `
+        <div style="border-top:1px solid var(--border);padding-top:16px;margin-top:4px;">
+          <a href="${ev.actionLink}" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;padding:8px 20px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:opacity 0.2s" onmouseover="this.style.opacity=0.8" onmouseout="this.style.opacity=1">
+            ${ev.actionLabel} ↗
+          </a>
+        </div>
+        ` : ''}
+      </div>
+    </div>`;
+  }
+
+  if(key==='hci'&&d.evidence) extraBottom = (extraBottom||'') + evidenceBlock(d.evidence);
+  if(key==='mgmt'&&d.evidence) extraBottom = (extraBottom||'') + evidenceBlock(d.evidence);
+
+  document.getElementById('mHeader').innerHTML=`
+    <div class="modal-icon" style="background:${d.iconBg}">${d.icon}</div>
+    <div class="modal-header-text">
+      <div class="modal-tag-row">${tags}</div>
+      <div style="font-family:'Clash Display',sans-serif;font-size:24px;font-weight:700;letter-spacing:-0.5px;margin:8px 0 4px">${d.title}</div>
+      <div style="font-size:14px;color:var(--ink2);line-height:1.5">${d.subtitle}</div>
+    </div>
+    <button class="modal-close" onclick="closeModalBtn()">✕</button>`;
+
+  document.getElementById('mBody').innerHTML=`
+    <div class="modal-section">
+      <div class="modal-section-title">Overview</div>
+      <div class="ov-grid">${ov}</div>
+    </div>
+    ${extraTop}
+    <div class="modal-section">
+      <div class="modal-section-title">Key Contributions</div>
+      <div class="feat-list">${feats}</div>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">Skills Applied</div>
+      <div class="skills-pills">${skills}</div>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">Results & Metrics</div>
+      ${buildDemo(key)}
+    </div>
+    ${extraBottom}`;
+
+  document.getElementById('modalOverlay').classList.add('open');
+  setTimeout(()=>{document.querySelectorAll('.prog-fill[data-w]').forEach(el=>{el.style.width=el.dataset.w+'%';});},200);
+}
+
+function closeModal(e){if(e.target===document.getElementById('modalOverlay'))document.getElementById('modalOverlay').classList.remove('open');}
+function closeModalBtn(){document.getElementById('modalOverlay').classList.remove('open');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('modalOverlay').classList.remove('open');});
+</script>
+</body>
+</html>
